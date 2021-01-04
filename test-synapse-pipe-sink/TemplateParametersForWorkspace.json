@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "test-synapse-pipe-sink"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"test-synapse-pipe-sink-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://dlaketestvince.dfs.core.windows.net"
+		},
+		"test-synapse-pipe-sink-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://dlaketestvince.dfs.core.windows.net"
+		},
+		"EventBasedFile_properties_typeProperties_scope": {
+			"value": "/subscriptions/12cc41fb-6aea-4573-9608-df786f761a6b/resourceGroups/test-pipelines-files-to-files-to-dw/providers/Microsoft.Storage/storageAccounts/dlaketestvince"
+		},
+		"Trigger 1_properties_typeProperties_scope": {
+			"value": "/subscriptions/12cc41fb-6aea-4573-9608-df786f761a6b/resourceGroups/test-pipelines-files-to-files-to-dw/providers/Microsoft.Storage/storageAccounts/dlaketestvince"
+		},
+		"Trigger 2_properties_typeProperties_scope": {
+			"value": "/subscriptions/12cc41fb-6aea-4573-9608-df786f761a6b/resourceGroups/test-pipelines-files-to-files-to-dw/providers/Microsoft.Storage/storageAccounts/dlaketestvince"
+		},
+		"new_event_properties_typeProperties_scope": {
+			"value": "/subscriptions/12cc41fb-6aea-4573-9608-df786f761a6b/resourceGroups/test-pipelines-files-to-files-to-dw/providers/Microsoft.Storage/storageAccounts/dlaketestvince"
+		},
+		"testevent_properties_typeProperties_scope": {
+			"value": "/subscriptions/12cc41fb-6aea-4573-9608-df786f761a6b/resourceGroups/test-pipelines-files-to-files-to-dw/providers/Microsoft.Storage/storageAccounts/dlaketestvince"
+		}
+	}
+}

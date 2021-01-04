@@ -12,7 +12,7 @@
 				"type": "AzureBlobFSLocation",
 				"fileName": ".parquet",
 				"folderPath": {
-					"value": "raw/sql/S-IDEVS-SQL05/HPV_VW/dbo.HPV_Data_bereinigt/@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(adddays(utcnow(),0),'dd')}/10",
+					"value": "raw/sql/S-IDEVS-SQL05/HPV_VW/dbo.HPV_Data_bereinigt/@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(adddays(utcnow(),0),'dd')}",
 					"type": "Expression"
 				},
 				"fileSystem": "datalake"

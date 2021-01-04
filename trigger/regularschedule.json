@@ -1,0 +1,17 @@
+{
+	"name": "regularschedule",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 3,
+				"startTime": "2020-12-29T18:08:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

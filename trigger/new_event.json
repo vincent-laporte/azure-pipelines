@@ -1,0 +1,25 @@
+{
+	"name": "new_event",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EventBasedData_Final",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/datalake/blobs/raw/sql/S-IDEVS-SQL05/HPV_VW/dbo.HPV_Data_bereinigt/",
+			"blobPathEndsWith": ".parquet",
+			"ignoreEmptyBlobs": false,
+			"scope": "/subscriptions/12cc41fb-6aea-4573-9608-df786f761a6b/resourceGroups/test-pipelines-files-to-files-to-dw/providers/Microsoft.Storage/storageAccounts/dlaketestvince",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

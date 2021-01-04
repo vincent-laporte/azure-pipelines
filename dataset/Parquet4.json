@@ -1,0 +1,71 @@
+{
+	"name": "Parquet4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "19",
+				"folderPath": "cleaned/sql/server/db/table/2020/12/10",
+				"container": "datalake"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "id_HPV_Data",
+				"type": "INT32"
+			},
+			{
+				"name": "Datamatrix",
+				"type": "UTF8"
+			},
+			{
+				"name": "Pruefung",
+				"type": "INT32"
+			},
+			{
+				"name": "fi_Pruefplatz",
+				"type": "INT32"
+			},
+			{
+				"name": "DatumPruefung",
+				"type": "INT96"
+			},
+			{
+				"name": "Fehlercode",
+				"type": "UTF8"
+			},
+			{
+				"name": "WKL_PI_Ipn_min",
+				"type": "FLOAT"
+			},
+			{
+				"name": "WKL_PI_Ipn_max",
+				"type": "FLOAT"
+			},
+			{
+				"name": "WKL_PI_Ipn",
+				"type": "FLOAT"
+			},
+			{
+				"name": "WKL_PI_Pin_min",
+				"type": "FLOAT"
+			},
+			{
+				"name": "WKL_PI_Pin_max",
+				"type": "FLOAT"
+			},
+			{
+				"name": "WKL_PI_Pin",
+				"type": "FLOAT"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

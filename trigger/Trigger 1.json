@@ -1,0 +1,25 @@
+{
+	"name": "Trigger 1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Pipeline 2",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/datalake/blobs/test/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/12cc41fb-6aea-4573-9608-df786f761a6b/resourceGroups/test-pipelines-files-to-files-to-dw/providers/Microsoft.Storage/storageAccounts/dlaketestvince",
+			"events": [
+				"Microsoft.Storage.BlobCreated",
+				"Microsoft.Storage.BlobDeleted"
+			]
+		}
+	}
+}

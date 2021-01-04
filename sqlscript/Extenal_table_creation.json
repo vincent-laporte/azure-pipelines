@@ -1,0 +1,16 @@
+{
+	"name": "Extenal_table_creation",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'datalake_dlaketestvince_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [datalake_dlaketestvince_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://dlaketestvince.dfs.core.windows.net/datalake', \n\t)\nGo\n\nCREATE EXTERNAL TABLE Parquet13 (\n\t[id_HPV_Data] int,\n\t[Datamatrix] nvarchar(max),\n\t[Pruefung] int,\n\t[DatumPruefung] datetime2(7),\n\t[fi_Pruefplatz] int,\n\t[Fehlercode] nvarchar(Max),\n\t[WKL_PI_Ipn_min] real,\n\t[WKL_PI_Ipn_max] real,\n\t[WKL_PI_Ipn] real,\n\t[WKL_PI_Pin_min] real, \n\t[WKL_PI_Pin_max] real,\n\t[WKL_PI_Pin] real\n\t)\n\tWITH (\n\tLOCATION = 'raw/sql/S-IDEVS-SQL05/HPV_VW/dbo.HPV_Data_bereinigt/2020/12/10/13/*.parquet',\n\tDATA_SOURCE = [datalake_dlaketestvince_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT count (*) FROM Parquet13\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "TEST_DB",
+				"type": "SqlOnDemand"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

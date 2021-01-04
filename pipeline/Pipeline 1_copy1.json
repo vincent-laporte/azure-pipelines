@@ -1,0 +1,270 @@
+{
+	"name": "Pipeline 1_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "DatalakeHourToDay",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": {
+								"value": "@convertToUtc(addToTime(utcnow(),-15,'minute'),'utc')",
+								"type": "Expression"
+							},
+							"modifiedDatetimeEnd": {
+								"value": "@utcnow()",
+								"type": "Expression"
+							},
+							"wildcardFolderPath": {
+								"value": "raw/sql/S-IDEVS-SQL05/HPV_VW/dbo.HPV_Data_bereinigt/@{formatDateTime(addToTime(utcnow(),-15,'minute'),'yyyy')}/@{formatDateTime(addToTime(utcnow(),-15,'minute'),'MM')}/@{formatDateTime(adddays(addToTime(utcnow(),-15,'minute'),-6),'dd')}/10",
+								"type": "Expression"
+							},
+							"wildcardFileName": "*.parquet",
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "MergeFiles"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "id_HPV_Data",
+									"type": "Int32",
+									"physicalType": "INT32"
+								},
+								"sink": {
+									"name": "id_HPV_Data",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Datamatrix",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Datamatrix",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Pruefung",
+									"type": "Int32",
+									"physicalType": "INT32"
+								},
+								"sink": {
+									"name": "Pruefung",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "fi_Pruefplatz",
+									"type": "Int32",
+									"physicalType": "INT32"
+								},
+								"sink": {
+									"name": "fi_Pruefplatz",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "DatumPruefung",
+									"type": "DateTime",
+									"physicalType": "INT96"
+								},
+								"sink": {
+									"name": "DatumPruefung",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Fehlercode",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Fehlercode",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "WKL_PI_Ipn_min",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								},
+								"sink": {
+									"name": "WKL_PI_Ipn_min",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								}
+							},
+							{
+								"source": {
+									"name": "WKL_PI_Ipn_max",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								},
+								"sink": {
+									"name": "WKL_PI_Ipn_max",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								}
+							},
+							{
+								"source": {
+									"name": "WKL_PI_Ipn",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								},
+								"sink": {
+									"name": "WKL_PI_Ipn",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								}
+							},
+							{
+								"source": {
+									"name": "WKL_PI_Pin_min",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								},
+								"sink": {
+									"name": "WKL_PI_Pin_min",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								}
+							},
+							{
+								"source": {
+									"name": "WKL_PI_Pin_max",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								},
+								"sink": {
+									"name": "WKL_PI_Pin_max",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								}
+							},
+							{
+								"source": {
+									"name": "WKL_PI_Pin",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								},
+								"sink": {
+									"name": "WKL_PI_Pin",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": false,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "destParquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "AZWarehouse",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "DatalakeHourToDay",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureDLsrc",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSynapseAnalyticsTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-12-17T17:36:24Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}
